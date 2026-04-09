@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/PRATHAMKUKUDKAR/Terraform.git'
+                git branch: 'main', url: 'https://github.com/PRATHAMKUKUDKAR/Booking-Project.git'
             }
         }
 
