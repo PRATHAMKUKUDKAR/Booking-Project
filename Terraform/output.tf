@@ -1,112 +1,137 @@
+########################### FRONTEND EC2 ##############################
 
-########################### FrontEnd EC2 1 #######################################
-output "Create_public_ip_Frontend_EC2_1" {
-    description = "public id for Front-end-Ec2-1"
-    value = aws_instance.Frontend-EC2-1
-  
+output "frontend1_public_ip" {
+  value = aws_instance.frontend1.public_ip
 }
 
-output "Create_private_ip_Frontend_EC2_1" {
-    description = "Private ip for ec2"
-    value = aws_instance.Frontend-EC2-1
-  
+output "frontend1_private_ip" {
+  value = aws_instance.frontend1.private_ip
 }
 
-output "Create_instance_type_Frontend_EC2_1" {
-    description = "Instance Type"
-    value = aws_instance.Frontend-EC2-1
-  
+output "frontend2_public_ip" {
+  value = aws_instance.frontend2.public_ip
 }
 
-output "Create_Instance_Name_Frontend_EC2_1" {
-    description = "Instance neme"
-    value = aws_instance.Frontend-EC2-1
-  
+output "frontend2_private_ip" {
+  value = aws_instance.frontend2.private_ip
 }
 
-################################## FrontEnd EC2 2 ##################################
+########################### PRIVATE EC2 ##############################
 
-output "Create_public_ip_Frontent_EC2_2" {
-    description = "public id for Front-end-Ec2-2"
-    value = aws_instance.Frontend-EC2-2
-  
+output "train_1_private_ip" {
+  value = aws_instance.Train-1.private_ip
 }
 
-output "Create_private_ip_Frontend_EC2_2" {
-    description = "Private ip for ec2"
-    value = aws_instance.Frontend-EC2-2
-  
+output "train_2_private_ip" {
+  value = aws_instance.Train-1.private_ip
 }
 
-output "Create_instance_type_Frontend_EC2_2" {
-    description = "Instance Type"
-    value = aws_instance.Frontend-EC2-2
-  
+output "bus_1_private_ip" {
+  value = aws_instance.Bus-1.public_ip
 }
 
-output "Instance_Name_Frontend_EC2_2" {
-    description = "Instance neme"
-    value = aws_instance.Frontend-EC2-2
-  
+output "bus_2_private_ip" {
+  value = aws_instance.Bus-2.private_ip
 }
 
-##################################### Security Group ############################
+output "flight_1_private_ip" {
+  value = aws_instance.Flight-1.private_ip
 
-
-
-output "Create_security_group_id" {
-  value = aws_security_group.Public-SG.id
+}
+output "flight_2_private_ip" {
+  value = aws_instance.Flight-2.public_ip
 }
 
+########################### VPC ##############################
 
-
-output "Create_Public_sub_1" {
- value = aws_subnet.Terraform-Public-Subnet-1 
+output "vpc_id" {
+  value = aws_vpc.Terraform-VPC
 }
 
-output "Create_Public_sub_2" {
+output "vpc_cidr" {
+  value = aws_vpc.Terraform-VPC
+}
+
+########################### SUBNETS ##############################
+
+output "public_subnet_1_id" {
+  value = aws_subnet.Terraform-Public-Subnet-1
+}
+
+output "public_subnet_2_id" {
   value = aws_subnet.Terraform-Public-Subnet-2
-}   
+}
 
-output "Create_Private_sub_1" {
+output "private_subnet_1_id" {
   value = aws_subnet.Terraform-Private-Subnet-1
 }
 
-output "Create_Private_sub_2" {
+output "private_subnet_2_id" {
   value = aws_subnet.Terraform-Private-Subnet-2
 }
 
-output "Public_Route_Table_id" {
-  value = aws_route_table.Terraform-RT-Public.id
+########################### ROUTE TABLE ##############################
+
+output "public_route_table_id" {
+  value = aws_route_table.public_rt.id
 }
 
-output "Subnet_Assosiate_in_Public_Route_Table" {
-  value = [
-    aws_subnet.Terraform-Public-Subnet-1.id
-  ,
-    aws_subnet.Terraform-Public-Subnet-2.id
-  ]
+output "private_route_table_id" {
+  value = aws_route_table.private_rt.id
 }
 
-output "nat_eip_id" {
-  description = "Elastic IP ID"
-  value       = aws_eip.Terraform-EIP-Nat.id
+########################### INTERNET + NAT ##############################
+
+output "internet_gateway_id" {
+  value = aws_internet_gateway.igw.id
 }
 
 output "nat_gateway_id" {
-  description = "NAT Gateway ID"
-  value       = aws_nat_gateway.Terraform-Nat-Gateway.id
+  value = aws_nat_gateway.nat.id
 }
 
 output "nat_public_ip" {
-  description = "Public IP of NAT Gateway"
-  value       = aws_eip.Terraform-EIP-Nat.public_ip
+  value = aws_eip.nat_eip.public_ip
 }
 
-output "Subnet_Assosiate_in_Private_Route_Table" {
-  value = [
-    aws_subnet.Terraform-Private-Subnet-1.id
-  ,
-    aws_subnet.Terraform-Private-Subnet-2.id
-  ]
+########################### SECURITY GROUP ##############################
+
+output "public_sg_id" {
+  value = aws_security_group.public_sg.id
+}
+
+output "private_sg_id" {
+  value = aws_security_group.private_sg.id
+}
+
+########################### ALB ##############################
+
+output "alb_dns_name" {
+  value = aws_lb.Terraform-ALB
+}
+
+output "alb_arn" {
+  value = aws_lb.Terraform-ALB
+}
+
+########################### TARGET GROUP ##############################
+
+output "frontend_tg_arn" {
+  value = aws_lb_target_group.frontend_tg
+}
+
+output "train_tg_arn" {
+  value = aws_lb_target_group.train_tg
+}
+
+output "bus_tg_arn" {
+  value = aws_lb_target_group.bus_tg
+}
+output "flight_tg_arn" {
+  value = aws_lb_target_group.flight_tg
+}
+########################### KEY ##############################
+
+output "key_pair_name" {
+  value = var.pem_key_name
 }
