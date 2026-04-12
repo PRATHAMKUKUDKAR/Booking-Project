@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-############################ vpc create #################################
-=======
 
 ############################ VPC ##############################
->>>>>>> 99e6b43 (terraform.tfvars file added)
+
 resource "aws_vpc" "Terraform-VPC" {
   cidr_block = var.vpc_cidr
 
