@@ -1,4 +1,4 @@
-############################ vpc create ##############################
+############################ vpc create #################################
 resource "aws_vpc" "Terraform-VPC" {
   cidr_block = var.vpc_cidr
   tags = {
